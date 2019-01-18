@@ -6,6 +6,24 @@
 
 // 4. Open your mongoose connection
 
+const mongoose = require('mongoose');
+const uri = 'mongodb://localhost/vampire';
+mongoose.connect(uri);
+
+mongoose.connection.on('connected', () => {
+    console.log(`Mongoose connected to ${uri}`);
+});
+mongoose.connection.on('error', (err) => {
+    console.log(`Mongoose connect error ${uri}`);
+});
+mongoose.connection.on('disconnected', () => {
+    console.log(`Mongoose disconnected from ${uri}`);
+});
+
+require('./app');
+const Vampire = require('./models/vampire');
+
+
 /////////////////////////////////////////////////
 //Write your answers to add, query, update, remove, and Hungry for More below.
 

@@ -5,7 +5,7 @@ const vampireSchema = new mongoose.Schema({
     hair_color: { type: String, required: true, default: 'blonde'},
     eye_color: {type: String, required: true},
     dob: Date,
-    loves: [{body: String}],
+    loves: [{type: String}],
     location: {type: String},
     gender: {type: String},
     victims: {type: Number, min: 1 },

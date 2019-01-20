@@ -12,7 +12,7 @@ mongoose.connect(uri, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false
-  });
+});
 
 mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${uri}`);
@@ -26,7 +26,6 @@ mongoose.connection.on('disconnected', () => {
 
 require('./app');
 const Vampire = require('./models/vampire');
-
 
 /////////////////////////////////////////////////
 //Write your answers to add, query, update, remove, and Hungry for More below.
@@ -43,10 +42,7 @@ Vampire.collection.insertMany(vampireData,(err, data) => {
     mongoose.connection.close();
   });
 
-
-
 // ### Add some new vampire data
-
 // Vampire.create([
 //     {
 //         name: 'Yogi',
@@ -82,7 +78,6 @@ Vampire.collection.insertMany(vampireData,(err, data) => {
 //         }
 //         mongoose.connection.close();
 // });
-
 /////////////////////////////////////////////////
 // ## QUERYING
 // Vampire.find({gender:'f'}, (err, vampire) => {
@@ -92,7 +87,8 @@ Vampire.collection.insertMany(vampireData,(err, data) => {
 //         console.log(vampire);
 //     }
 // });
-
+/////////////////////////////////////////////////
+// ### Select by comparison
 // Vampire.find({victims: {$gt: 500}}, (err, vampire) => {
 //     if(err) {
 //         console.log(err);
@@ -116,9 +112,8 @@ Vampire.collection.insertMany(vampireData,(err, data) => {
 //         console.log(vampire);
 //     }
 // });
-
 /////////////////////////////////////////////////
-// ### Select by comparison
+// ### Select by exists or does not exist
 // Vampire.find({title: {$exists:true}}, (err, vampire) => {
 //     if(err) {
 //         console.log(err);
@@ -143,19 +138,47 @@ Vampire.collection.insertMany(vampireData,(err, data) => {
 //     }
 // });
 
-Vampire.find({victims: {$exists: true}, victims: {$gt: 1000}}, (err, vampire) => {
-    if(err) {
-        console.log(err);
-    } else {
-        console.log(vampire);
-    }
-});
-
-/////////////////////////////////////////////////
-// ### Select by exists or does not exist
-
+// Vampire.find({victims: {$exists: true}, victims: {$gt: 1000}}, (err, vampire) => {
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(vampire);
+//     }
+// });
 /////////////////////////////////////////////////
 // ### Select with OR
+// Vampire.find({$or: [{location: 'New York, New York, US'} , {location: 'New Orleans, Louisiana, US'}]},
+//             (err, vampire) => {
+//             if(err) {
+//                 console.log(err);
+//             } else {
+//                 console.log(vampire);
+//             }
+// });
+
+// Vampire.find({$or: [{loves: {$in: 'brooding'}}, {loves: {$in: 'being tragic'}}]}, (err, vampire) => {
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(vampire);
+//     }
+// });
+
+// Vampire.find({$or: [ {victims: {$gt: 1000}}, {loves: {$in: 'marshmallows'}} ]}, (err, vampire) => {
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(vampire);
+//     }
+// });
+
+// Vampire.find({$or: [{hair_color: 'red'}, {eye_color: 'green'}]}, (err, vampire) =>{
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(vampire);
+//     }
+// });
 
 /////////////////////////////////////////////////
 //### Select objects that match one of several values

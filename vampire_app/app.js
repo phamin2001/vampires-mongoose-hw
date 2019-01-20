@@ -8,7 +8,11 @@
 
 const mongoose = require('mongoose');
 const uri = 'mongodb://localhost/vampire';
-mongoose.connect(uri);
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  });
 
 mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${uri}`);
@@ -115,6 +119,37 @@ Vampire.collection.insertMany(vampireData,(err, data) => {
 
 /////////////////////////////////////////////////
 // ### Select by comparison
+// Vampire.find({title: {$exists:true}}, (err, vampire) => {
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(vampire);
+//     }
+// });
+
+// Vampire.find({victims: {$exists: false}}, (err, vampire) => {
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(vampire);
+//     }
+// });
+
+// Vampire.find({title: {$exists: true}, victims: {$exists: false}}, (err, vampire) => {
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(vampire);
+//     }
+// });
+
+Vampire.find({victims: {$exists: true}, victims: {$gt: 1000}}, (err, vampire) => {
+    if(err) {
+        console.log(err);
+    } else {
+        console.log(vampire);
+    }
+});
 
 /////////////////////////////////////////////////
 // ### Select by exists or does not exist

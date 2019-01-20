@@ -182,6 +182,44 @@ Vampire.collection.insertMany(vampireData,(err, data) => {
 
 /////////////////////////////////////////////////
 //### Select objects that match one of several values
+// Vampire.find({$or: [{loves: {$in: 'frilly shirtsleeves'}}, {loves: {$in: 'frilly collars'}}]}, (err, vampire) => {
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(vampire);
+//     }
+// });
+
+// Vampire.find({loves: {$in: 'brooding'}}, (err, vampire) => {
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(vampire);
+//     }
+// });
+
+// Vampire.find({$or: [
+//     {loves: {$in: 'appearing innocent'}}, {loves: {$in: 'trickery'}}, 
+//     {loves: {$in: 'lurking in rotting mansions'}}, {loves: {$in: 'R&B music'}}
+//     ]}, (err, vampire) => {
+//         if(err) {
+//             console.log(err);
+//         } else {
+//             console.log(vampire);
+//         }
+// });
+
+Vampire.find(
+            { 
+                loves: {$in: 'fancy cloaks', $nin: ['top hats', 'virgin blood']}
+            },
+            (err, vampire) => {
+    if(err) {
+        console.log(err);
+    } else {
+        console.log(vampire);
+    }
+});
 
 /////////////////////////////////////////////////
 //### Negative Selection

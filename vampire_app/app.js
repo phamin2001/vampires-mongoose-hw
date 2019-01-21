@@ -251,17 +251,42 @@ Vampire.collection.insertMany(vampireData,(err, data) => {
 //                     }
 // });
 
-Vampire.find({victims: {$lt: 200}}, (err, vampire) => {
-    if(err) {
-        console.log(err);
-    } else {
-        console.log(vampire);
-    }
-});
+// Vampire.find({victims: {$lt: 200}}, (err, vampire) => {
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(vampire);
+//     }
+// });
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // ## REPLACE
+// let change = {$set: {name: 'Eve', portrayed_by: 'Tilda Swinton'}};
+// Vampire.findOneAndUpdate(
+//     {name: 'Claudia'}, change,
+//     {new: true, strict: false},
+//     (err, vampire) => {
+//         if(err) {
+//             console.log(err);
+//         } else {
+//             console.log(vampire);
+//         }
+// });
+
+Vampire.findOne({gender: 'm'}, (err,vampire) => {
+    if(err) {
+        console.log(err);
+    } else {
+        console.log(vampire);
+        Vampire.update({name: vampire.name}, {name: 'Guy Man', is_actually: 'were-lizard'},
+                      {new: true, strict: false}, 
+                      (err, vampire) => {
+                        if(err) {console.log(err);}
+                        else {console.log(vampire);}
+                      });
+    }
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////

@@ -274,19 +274,18 @@ Vampire.collection.insertMany(vampireData,(err, data) => {
 //         }
 // });
 
-Vampire.findOne({gender: 'm'}, (err,vampire) => {
-    if(err) {
-        console.log(err);
-    } else {
-        console.log(vampire);
-        Vampire.update({name: vampire.name}, {name: 'Guy Man', is_actually: 'were-lizard'},
-                      {new: true, strict: false}, 
-                      (err, vampire) => {
-                        if(err) {console.log(err);}
-                        else {console.log(vampire);}
-                      });
-    }
-});
+// Vampire.findOneAndUpdate(
+//     {gender: 'm'},
+//     {$set: {name: 'Guy Man', is_actually: 'were-lizard'}},
+//     {new: true, strict: false},
+//     (err, vampire) => {
+//         if(err) {
+//             console.log(err);
+//         } else {
+//             console.log(vampire);
+//         }
+//     }
+// );
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////

@@ -209,20 +209,55 @@ Vampire.collection.insertMany(vampireData,(err, data) => {
 //         }
 // });
 
-Vampire.find(
-            { 
-                loves: {$in: 'fancy cloaks', $nin: ['top hats', 'virgin blood']}
-            },
-            (err, vampire) => {
+// Vampire.find(
+//             { 
+//                 loves: {$in: 'fancy cloaks', $nin: ['top hats', 'virgin blood']}
+//             },
+//             (err, vampire) => {
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(vampire);
+//     }
+// });
+/////////////////////////////////////////////////
+//### Negative Selection
+// Vampire.find(
+//             {
+//                 loves: {$in: 'ribbons'},
+//                 eye_color: {$nin: ['brown']}
+//             }, (err, vampire) => {
+//     if(err) {
+//         console.log('err');
+//     } else {
+//         console.log(vampire);
+//     }
+// });
+
+// Vampire.find({location: {$nin: ['Rome, Italy']}}, (err, vampire) => {
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(vampire);
+//     }
+// });
+
+// Vampire.find({loves: {$nin: ['fancy cloaks', 'frilly shirtsleeves', 'appearing innocent', 'being tragic', 'brooding']}},
+//                 (err, vampire) =>{
+//                     if(err) {
+//                         console.log(err);
+//                     } else {
+//                         console.log(vampire);
+//                     }
+// });
+
+Vampire.find({victims: {$lt: 200}}, (err, vampire) => {
     if(err) {
         console.log(err);
     } else {
         console.log(vampire);
     }
 });
-
-/////////////////////////////////////////////////
-//### Negative Selection
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
